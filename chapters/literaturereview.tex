@@ -2,8 +2,103 @@
 \label{ch:literaturereview}
 
 \section{Introduction}
+\label{sec:lr_introduction}
 
+The rapid progress of large language models (LLMs) has made it possible to produce fluent, persuasive text at negligible cost and at scale. While this capability benefits many legitimate applications, it also lowers the barrier to producing misleading content \cite{zakaria2024} and coordinating disinformation campaigns, which has stimulated a growing body of research on the automatic detection of machine-generated text. Related work has approached the problem from several complementary perspectives, including surveys of AI-generated misinformation \cite{zakaria2024}, forensic-linguistic accounts of AI-generated malicious texts \cite{sousasilva2024}, and a broad family of machine learning and deep learning detectors.
+
+This chapter critically reviews the studies that are most closely related to the present thesis. The review is restricted to work whose primary goal is to distinguish machine-generated from human-written content, with particular attention to social-media text, the evaluation of commercial detection tools, and classification models based on classical machine learning, deep learning, and transformer architectures. For each study, the review reports the objective, the data used, the detection method, the evaluation metrics, and the principal findings, as stated by the original authors.
+
+The remainder of the chapter is organised as follows. Section~\ref{sec:lr_related_works} discusses the related studies, grouped by their focus. Section~\ref{sec:lr_comparison} consolidates them in a comparative table. Section~\ref{sec:lr_analysis} presents a critical analysis and identifies the research gap addressed by this thesis, and Section~\ref{sec:lr_summary} summarises the chapter.
+
+% -------------------------------------------------------
+\section{Related Works}
+\label{sec:lr_related_works}
+
+\subsection{Survey and Review Studies}
+\label{subsec:lr_surveys}
+
+Several authors have surveyed the landscape of detection techniques. Bao \cite{bao2024} reviewed current methodologies for detecting AI-generated textual and image misinformation, relying mainly on natural language processing (NLP) and convolutional neural network (CNN) techniques, and thereby provided a framework for building identification tools for both modalities. The review notes that RoBERTa-based models reached an accuracy of up to 99.2\% in detecting AI-generated tweets, which illustrates the potential of advanced machine learning in countering this problem.
+
+Ghiur\u{a}u and Popescu \cite{ghiurau2025} examined the characteristics, methods, and challenges of detecting synthetic content across multiple modalities, with the aim of safeguarding digital authenticity and integrity. The detection approaches covered include stylometric analysis, watermarking, pixel-prediction techniques, dual-stream networks, machine learning models, blockchain, and hybrid approaches, and the authors discuss their strengths, limitations, and detection accuracy. Stylometric analysis alone reached an accuracy of about 80\%, whereas hybrid approaches combining several modalities achieved up to 92\%. The survey considers contexts ranging from the identification of deepfakes and synthetic media to the detection of AI-generated scientific text.
+
+Adithya et al. \cite{adithya2025} focused on deepfake text and on the role of sentiment analysis in detecting emotional manipulation and intent in fabricated content. They discuss sentiment-driven statistical analysis, sentiment-aware linguistic evaluation, and machine learning models trained to recognise deepfake text and emotionally manipulative content. Sentiment analysis is used to determine the emotional tone, polarity, and subjective intent of content designed to elicit emotional rather than rational responses and to encourage fraudulent behaviour. The authors identify two principal challenges: the scarcity of labelled datasets and the ability of adversaries to adapt emotionally charged content so as to evade detection.
+
+\subsection{Detection of Machine-Generated Social Media Content}
+\label{subsec:lr_social}
+
+Social platforms are a primary channel for disinformation, and a substantial share of the literature therefore targets short, informal texts such as tweets.
+
+Sravanthi and Sai \cite{sravanthi2025} proposed a deep learning strategy to recognise machine-generated deepfake tweets and thus limit the spread of online misinformation. Tweets are first pre-processed and then converted into dense vectors using FastText embeddings. These vectors are fed to a deep learning classifier, such as a CNN or a long short-term memory (LSTM) network, which labels each tweet as authentic or machine-generated. The model was trained on a labelled dataset in which the machine-generated tweets were synthesised with advanced text generation algorithms. Experiments on a realistic tweet dataset indicate that the method outperforms existing deepfake-detection techniques.
+
+Two closely related studies share the same motivation, namely to counter misinformation and protect the integrity of online discourse, and the same pipeline of FastText embeddings feeding a classifier. Rajkumar et al. \cite{rajkumar2024} compared Naive Bayes, Logistic Regression, Decision Tree, Random Forest, and CNN classifiers using F1-score, precision, recall, and accuracy. The CNN achieved the highest accuracy, at 87\%, whereas the Decision Tree performed worst, at 56\%. ShivaKrishna and Bhargavi \cite{shivakrishna2025} extended this comparison to Gradient Boosting, a proposed CNN, and an extended hybrid CNN. The hybrid CNN performed best, with an accuracy of 93.94\%, while Naive Bayes was the weakest at 57.96\%. The authors argue that this approach offers real-time detection, improved accuracy, and better scalability than traditional methods.
+
+Kumarage et al. \cite{kumarage2023} proposed an algorithm that exploits stylistic cues to detect AI-generated tweets within Twitter timelines. Their work addresses two tasks: distinguishing AI-generated from human-written tweets, and determining whether, and from which point in time, an account has begun to publish AI-generated text. They evaluated a range of models, including XGBoost classifiers over bag-of-words, Word2Vec, stylometric, BERT, and RoBERTa features, as well as fine-tuned BERT and RoBERTa models, with and without stylometric features. The fine-tuned RoBERTa model combined with stylometric features was the most accurate, reaching an accuracy of approximately 91.1\%.
+
+Fagni et al. \cite{fagni2021} introduced TweepFake, a dataset for detecting deepfake tweets. It comprises about 25{,}000 tweets, half written by humans and half generated by machine, with the human-written tweets collected from real Twitter accounts. The authors evaluated 13 detection methods, among which the fine-tuned RoBERTa model proved the most accurate, with an F1-score of 0.895.
+
+\subsection{Evaluation of Commercial AI-Content Detectors}
+\label{subsec:lr_tools}
+
+A second line of work evaluates publicly available detection tools rather than proposing new models.
+
+Chaka \cite{chaka2023} assessed five AI-content detectors on text produced by ChatGPT: GPTZero, the OpenAI Text Classifier, the Writer.com AI Content Detector, the Copyleaks AI Content Detector, and the Giant Language Model Test Room. The texts were generated in English and also translated into French, German, Spanish, and Soto. Copyleaks was the best-performing tool, followed by the OpenAI Text Classifier. GPTZero failed to detect the translated GPT-generated text and classified it as human-written, and although Copyleaks improved slightly, it still did not identify all the translated content as AI-generated. The study concludes that none of the five tools is adequate for detecting AI-generated content.
+
+Elkhatat et al. \cite{elkhatat2023} evaluated detection tools on a dataset of three kinds of text: 15 paragraphs generated by ChatGPT based on GPT-3.5, 15 paragraphs generated by ChatGPT based on GPT-4, and a set of human-written paragraphs. GPTZero detected the GPT-3.5 paragraphs, but its results were ambiguous for the GPT-4 paragraphs and unclear for the human-written content. The OpenAI classifier, in contrast, correctly classified all paragraphs, whether machine-generated or human-written.
+
+\subsection{Classical Machine Learning and Feature-Based Approaches}
+\label{subsec:lr_classical}
+
+Prova \cite{prova2024} aimed to build a model capable of distinguishing machine-generated from human-written text. The study applied the XGBoost classifier, support vector machines (SVM), and a deep learning model based on the BERT architecture. BERT achieved the best result, with an accuracy of 93\%, whereas XGBoost and SVM reached 84\% and 81\%, respectively.
+
+Najjar et al. \cite{najjar2025} created the CyberHumanAI dataset, which contains 1{,}000 observations, 500 human-written and 500 AI-generated. They classified the observations using XGBoost and Random Forest, which achieved accuracies of 83\% and 81\%, respectively. Both algorithms performed better on longer pieces of content than on shorter ones. Compared with GPTZero, which reached an accuracy of only 48\%, the proposed models were considerably more effective at detecting and classifying AI-generated content.
+
+\subsection{Deep Learning and Transformer-Based Approaches}
+\label{subsec:lr_deep}
+
+Boutadjine et al. \cite{boutadjine2025} addressed the discrimination between authentic and artificially generated text. They first built a dataset containing both authentic and deepfake text, generated with ChatGPT (GPT-3.5). They then applied transfer learning and performed deepfake detection with state-of-the-art large pre-trained language models, namely mBERT, XLM-RoBERTa-base, XLM-RoBERTa-large, and XLM-RoBERTa-large-XNLI, evaluated with accuracy, precision, recall, and F1-score. To verify generalisation, the models were validated on benchmark datasets containing unseen samples. Accuracy ranged from 94\% to 99\%. A comparison with human judgement revealed a marked gap in people's ability to identify deepfake text, underlining the need for sophisticated automated detectors.
+
+Katib et al. \cite{katib2023} proposed TSA-LSTMRNN, a model for separating human-written from ChatGPT-generated text. The technique optimises term frequency--inverse document frequency (TF-IDF) parameters, word embeddings, and feature counts, and achieved accuracies of 93.17\% and 93.83\% on the human-written and ChatGPT-generated datasets, respectively.
+
+Verma et al. \cite{verma2024} presented Ghostbuster, a detection system for text ghostwritten by LLMs. It was compared with existing detectors, including DetectGPT and GPTZero, and with a RoBERTa-based baseline. Ghostbuster achieved an F1-score of 99\%, which is 5.9 percentage points higher than the compared models.
+
+Mo et al. \cite{mo2024} developed a detection tool based on a transformer architecture. After pre-processing the text to remove non-alphabetic characters, punctuation, and extra spaces, they combined LSTM, Transformer, and CNN layers for text and sequence classification. During training and validation, the loss decreased from 0.127 to 0.005 and the accuracy rose from 94.96\% to 99.8\%. On the test set, the model reached an F1-score of 99\%, which indicates a strong capability for detecting and classifying AI-generated text.
+
+Xu et al. \cite{xu2024} sought to preserve academic integrity in view of the spread of ChatGPT by detecting ChatGPT-generated code assignments with the perplexity of large language models, using CodeBERT. Their approach outperformed existing detectors, raising the average area under the curve (AUC) from 0.56 for the GPTZero baseline to 0.87.
+
+Lai et al. \cite{lai2024} investigated the generalisation of AI-generated text detectors by testing five specialised transformer-based models on a dataset that was available to them and on one that was not. The individual classifiers performed well on the available dataset but generalised poorly to the unavailable one. To address this limitation, the authors combined the individual classifiers into an ensemble using adaptive algorithms, which raised the average accuracy from 91.8\% to 99.2\% on the available test set and from 62.9\% to 72.5\% on the unavailable one.
+
+Wang et al. \cite{wang2024} employed a BERT model as an effective AI-powered text detector. The data were pre-processed by removing spaces, stop words, numbers, and symbols, converting upper-case letters to lower case, and applying stemming. The dataset was split into 60\% for training and 40\% for testing. The model achieved an accuracy of 98.1\% on the training data and 97.7\% on the test data, showing that it can detect AI-generated text efficiently.
+
+Kayabas et al. \cite{kayabas2025} used an LSTM network to distinguish human-written from AI-generated Turkish text, motivated by its low hardware requirements and its proven strength in text classification. Four experiments varied hyperparameters such as the dropout rate, the number of training epochs, and the embedding size. The model trained for 20 epochs performed best, with an accuracy of 97.28\%, misclassifying only 19 of 628 texts. The results show that LSTM models are effective for detecting AI-generated Turkish text.
+
+Alhijawi et al. \cite{alhijawi2025} introduced AI-Catcher, a method for detecting ChatGPT-generated scientific text that integrates two deep learning models, a multilayer perceptron (MLP) and a CNN. They also collected AIGTxt, a new dataset of 3{,}000 records drawn from published articles in ten journals and divided into human-written, ChatGPT-generated, and mixed texts. AI-Catcher distinguished human-written from ChatGPT-generated scientific text more accurately than the alternative methods, improving average accuracy by 37.4\%.
+
+% -------------------------------------------------------
+\section{Comparative Summary of Related Works}
+\label{sec:lr_comparison}
+
+Table~\ref{tab:related_works_summary} consolidates the studies discussed above. For each work, it lists the objective, the models or methods applied, the evaluation metrics, and the principal reported result. The figures are those reported by the original authors; they were obtained on different datasets, text domains, and experimental settings and are therefore not directly comparable with one another.
+
+\input{tables/related_works_summary}
+
+% -------------------------------------------------------
+\section{Critical Analysis and Research Gap}
+\label{sec:lr_analysis}
+
+Several observations emerge from the reviewed studies.
+
+First, the field has moved from classical machine learning toward deep and transformer-based models. Studies that compared both families consistently report higher accuracy for the latter: BERT outperformed XGBoost and SVM in \cite{prova2024}, and CNN-based models outperformed Naive Bayes, Decision Tree, and Random Forest classifiers in \cite{rajkumar2024,shivakrishna2025}. Classical models nevertheless remain useful: XGBoost and Random Forest clearly outperformed GPTZero on a small dataset \cite{najjar2025}, and stylistic features add value even to strong neural detectors \cite{kumarage2023}.
+
+Second, the very high accuracies reported in several studies, frequently above 97\%, should be interpreted with caution. They are typically obtained on in-domain data, and the generalisation experiments reveal a much weaker picture: the accuracy of individual transformer classifiers dropped sharply on an unavailable dataset, reaching only 62.9\% to 72.5\% even after ensembling \cite{lai2024}.
+
+Third, publicly available commercial detectors are unreliable. Their performance degrades on translated text and on output from newer models, and results differ markedly between tools \cite{chaka2023,elkhatat2023,najjar2025}. Human readers are also poor detectors \cite{boutadjine2025}, which strengthens the case for dedicated automated detection.
+
+Fourth, text length and language matter. Longer texts are classified more reliably than short ones \cite{najjar2025}, which is significant for social media where posts are short, and, among the reviewed studies, those targeting languages other than English, such as the Turkish study \cite{kayabas2025}, remain comparatively few. Surveys also report a lack of labelled datasets and the capacity of adversaries to adapt content so as to evade detection \cite{adithya2025}.
+
+Finally, most of the reviewed work treats detection as an isolated, text-level classification problem. Only a small number of studies draw on forensic linguistics \cite{sousasilva2024} or consider the emotional and persuasive intent behind a text \cite{adithya2025}, and, to the best of our knowledge, few consider machine-generated text at the level of coordinated disinformation campaigns. The detection of automatically generated text is, moreover, a young research area, so there is a scarcity of studies that closely match the focus of this thesis. This gap motivates the present work, which investigates the combination of forensic-linguistic analysis and artificial intelligence for the detection of machine-generated disinformation campaigns.
 
 % -------------------------------------------------------
 \section{Chapter Summary}
+\label{sec:lr_summary}
 
+This chapter reviewed the studies most relevant to the detection of machine-generated text. They were grouped into surveys, work on social-media content, evaluations of commercial detectors, classical machine learning approaches, and deep learning and transformer-based approaches, and were consolidated in a comparative table. Researchers have used both machine learning algorithms and deep learning models such as BERT and CNN, and the reviewed evidence indicates that deep learning models generally achieve higher accuracy and precision than classical machine learning models. At the same time, performance often degrades under distribution shift, commercial detectors are unreliable, and text-level classification dominates over campaign-level analysis. Because the topic is relatively recent, studies that closely resemble the present work are scarce, and this gap is the one the thesis sets out to address in the following chapters.

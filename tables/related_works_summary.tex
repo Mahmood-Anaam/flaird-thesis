@@ -1,0 +1,71 @@
+% Summary table of the related works reviewed in Chapter 2.
+% Included from chapters/literaturereview.tex
+{\footnotesize\begin{singlespace}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{>{\raggedright\arraybackslash}p{2.5cm}
+                  >{\raggedright\arraybackslash}p{3.3cm}
+                  >{\raggedright\arraybackslash}p{3.3cm}
+                  >{\raggedright\arraybackslash}p{2.2cm}
+                  >{\raggedright\arraybackslash}p{3.1cm}}
+\caption{Summary of the related works on the detection of AI-generated text.}
+\label{tab:related_works_summary}\\
+\toprule
+\textbf{Study} & \textbf{Objective} & \textbf{Models / Methods} & \textbf{Metrics} & \textbf{Reported Result}\\
+\midrule
+\endfirsthead
+\multicolumn{5}{l}{\small\textit{Table~\thetable\ (continued)}}\\
+\toprule
+\textbf{Study} & \textbf{Objective} & \textbf{Models / Methods} & \textbf{Metrics} & \textbf{Reported Result}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\small\textit{Continued on the next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+Bao, 2024 \cite{bao2024} & Review of methods for detecting AI-generated textual and image misinformation & NLP and CNN-based techniques; RoBERTa-based models & --- & Up to 99.2\% accuracy (RoBERTa-based models on AI-generated tweets)\\
+
+Ghiur\u{a}u and Popescu, 2025 \cite{ghiurau2025} & Survey of detection approaches for synthetic content across modalities & Stylometry, watermarking, dual-stream networks, machine learning, blockchain, hybrid approaches & Detection accuracy & About 80\% (stylometric analysis); up to 92\% (hybrid, multimodal)\\
+
+Boutadjine et al., 2025 \cite{boutadjine2025} & Discriminating authentic from ChatGPT-3.5-generated text; comparison with human detection & Transfer learning with mBERT, XLM-RoBERTa-base, XLM-RoBERTa-large, XLM-RoBERTa-large-XNLI & Accuracy, precision, recall, F1-score & 94\%--99\% accuracy; humans markedly weaker than the detectors\\
+
+Adithya et al., 2025 \cite{adithya2025} & Survey of sentiment-driven detection of deepfake text and emotional manipulation & Sentiment-driven statistical analysis, sentiment-aware linguistic evaluation, machine learning & --- (survey) & Not applicable; highlights scarce labelled data and adversarial adaptation\\
+
+Sravanthi and Sai, 2025 \cite{sravanthi2025} & Identification of machine-generated tweets & FastText embeddings with CNN / LSTM & --- & Reported to surpass existing deepfake-text detection techniques\\
+
+Rajkumar et al., 2024 \cite{rajkumar2024} & Detection of machine-generated tweets & FastText embeddings; Naive Bayes, Logistic Regression, Decision Tree, Random Forest, CNN & F1-score, precision, recall, accuracy & CNN best (87\% accuracy); Decision Tree lowest (56\%)\\
+
+ShivaKrishna and Bhargavi, 2025 \cite{shivakrishna2025} & Detection of machine-generated tweets & FastText embeddings; Naive Bayes, Logistic Regression, Decision Tree, Random Forest, Gradient Boosting, CNN, extended hybrid CNN & F1-score, precision, recall, accuracy & Hybrid CNN best (93.94\%); Naive Bayes lowest (57.96\%)\\
+
+Chaka, 2023 \cite{chaka2023} & Evaluation of five AI-content detectors on ChatGPT output, including translated text & GPTZero, OpenAI Text Classifier, Writer.com, Copyleaks, GLTR (Giant Language Model Test Room) & Detection outcome per tool & Copyleaks best, then OpenAI classifier; all five judged inadequate\\
+
+Kumarage et al., 2023 \cite{kumarage2023} & Stylometric detection of AI-generated tweets in timelines & XGB (BOW, W2V, Stylo, BERT/RoBERTa embeddings); fine-tuned BERT, RoBERTa, RoBERTa+Stylo & Accuracy & RoBERTa FT + Stylo best (about 91.1\%)\\
+
+Fagni et al., 2021 \cite{fagni2021} & Detection of deepfake tweets using the TweepFake dataset & 13 detection methods & F1-score & Fine-tuned RoBERTa best (F1 = 0.895)\\
+
+Katib et al., 2023 \cite{katib2023} & Separating human- and ChatGPT-generated text & TSA-LSTMRNN (TF-IDF, word embedding, feature-count optimisation) & Accuracy & 93.17\% (human) and 93.83\% (ChatGPT)\\
+
+Verma et al., 2024 \cite{verma2024} & Detection of text ghostwritten by LLMs & Ghostbuster; compared with DetectGPT, GPTZero, RoBERTa baseline & F1-score & F1 = 99\%, 5.9 points above the compared models\\
+
+Mo et al., 2024 \cite{mo2024} & Detection of AI-generated text with a transformer-based model & Combined LSTM, Transformer and CNN layers & Accuracy, F1-score & Accuracy 94.96\%$\rightarrow$99.8\% in training; test F1 = 99\%\\
+
+Xu et al., 2024 \cite{xu2024} & Detection of ChatGPT-generated code assignments for academic integrity & CodeBERT with LLM perplexity & AUC & Average AUC raised from 0.56 (GPTZero baseline) to 0.87\\
+
+Lai et al., 2024 \cite{lai2024} & Generalisation of transformer-based detectors & Five fine-tuned transformers; adaptive ensemble & Accuracy & Ensemble: 91.8\%$\rightarrow$99.2\% (available data), 62.9\%$\rightarrow$72.5\% (unavailable data)\\
+
+Elkhatat et al., 2023 \cite{elkhatat2023} & Efficacy of detectors on GPT-3.5, GPT-4 and human paragraphs & GPTZero, OpenAI classifier & Detection correctness & OpenAI classifier correct on all paragraphs; GPTZero ambiguous on GPT-4 and human text\\
+
+Prova, 2024 \cite{prova2024} & Distinguishing machine-generated from human-written text & XGB, SVM, BERT & Accuracy & XGB 84\%, SVM 81\%, BERT 93\%\\
+
+Wang et al., 2024 \cite{wang2024} & AI-generated text detection with BERT & BERT; 60/40 train/test split & Accuracy & 98.1\% (train), 97.7\% (test)\\
+
+Najjar et al., 2025 \cite{najjar2025} & Detection of AI-generated content on the CyberHumanAI dataset (1{,}000 texts) & XGBoost, Random Forest; GPTZero as baseline & Accuracy & XGBoost 83\%, Random Forest 81\%, GPTZero 48\%\\
+
+Kayabas et al., 2025 \cite{kayabas2025} & Classifying Turkish human-written vs.\ AI-generated text & LSTM (hyperparameter variations) & Accuracy & 97.28\% (19 of 628 texts misclassified)\\
+
+Alhijawi et al., 2025 \cite{alhijawi2025} & Detection of ChatGPT-generated scientific text (AIGTxt dataset, 3{,}000 records) & AI-Catcher (MLP + CNN) & Accuracy & Average improvement of 37.4\% over alternatives\\
+
+\end{longtable}
+\end{singlespace}}
