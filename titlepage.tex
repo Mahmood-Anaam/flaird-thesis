@@ -1,8 +1,64 @@
-% \includepdf[pages=-]{titlepage.pdf} % include Title page and basmlah page as PDF file.
+% ============================================================
+% Title page (Al-Baha University thesis template)
+% Followed by the English abstract and the Arabic abstract page.
+% ============================================================
 
-% \includepdf[pages=-]{thesisapproval.pdf} % include thesis approval as PDF file (this page should added once the final thesis version is approved).
+% ---------- Title page ----------
+\thispagestyle{empty}
+\begin{center}
 
-\pagenumbering{roman} \setcounter{page}{1} 
+% Header: university identity (left) and university logo (right)
+\begin{minipage}[c]{0.72\textwidth}
+  \centering
+  \large
+  \textbf{Kingdom of Saudi Arabia}\\[2pt]
+  Ministry of Education\\[2pt]
+  Al-Baha University\\[2pt]
+  Faculty of Computing and Information\\[2pt]
+  Department of Computer Science
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.24\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{university-logo.png}
+\end{minipage}
+
+\vspace{3.2cm}
+
+% Thesis title
+{\Huge\bfseries Forensic Linguistics and AI for the Detection of Machine-Generated Disinformation Campaigns\par}
+
+\vspace{1.2cm}
+
+% Degree statement
+{\large A Thesis Submitted in Partial Fulfillment of the Requirements\\
+for the Master Degree in Artificial Intelligence.\par}
+
+\vspace{2.2cm}
+
+% Author
+{\large\textbf{By}\\[6pt]
+Yusr Abdullah Alqarni\par}
+
+\vspace{1.2cm}
+
+% Supervisor
+{\large\textbf{Supervisor}\\[6pt]
+Prof. Fahad Ali Alghamdi\par}
+
+\vspace{1.2cm}
+
+% Academic year (Hijri - Gregorian)
+{\large 1448 - 2026\par}
+
+\end{center}
+\clearpage
+
+% NOTE: the thesis approval page should be included here once the final
+% version of the thesis is approved by the examination committee.
+
+% ---------- Front matter: abstracts ----------
+\pagenumbering{roman} \setcounter{page}{1}
 
 \chapter*{\centering\ Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
