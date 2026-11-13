@@ -1,79 +1,53 @@
 % Summary table of the related works reviewed in Chapter 2.
-% Landscape, grouped by research focus, included from chapters/literaturereview.tex
-\begin{landscape}
-{\footnotesize\begin{singlespace}
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.35}
+% Portrait, single page, grouped by research focus.
+% Included from chapters/literaturereview.tex
+\begin{table}[p]
+\centering
+\caption{Summary of the related works on the detection of AI-generated text.}
+\label{tab:related_works_summary}
+{\scriptsize\begin{singlespace}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.3}
 \definecolor{headgray}{gray}{0.80}
 \definecolor{groupgray}{gray}{0.92}
-\begin{longtable}{@{}>{\centering\arraybackslash}p{0.7cm}
-                  >{\raggedright\arraybackslash}p{3.4cm}
-                  >{\raggedright\arraybackslash}p{5.1cm}
-                  >{\raggedright\arraybackslash}p{5.6cm}
-                  >{\raggedright\arraybackslash}p{3.0cm}
-                  >{\raggedright\arraybackslash}p{5.3cm}@{}}
-\caption{Summary of the related works on the detection of AI-generated text.}
-\label{tab:related_works_summary}\\
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.9cm}
+                  >{\raggedright\arraybackslash}p{3.9cm}
+                  >{\raggedright\arraybackslash}p{4.2cm}
+                  >{\raggedright\arraybackslash}p{3.6cm}@{}}
 \toprule
-\rowcolor{headgray}\textbf{\#} & \textbf{Study} & \textbf{Objective} & \textbf{Models / Methods} & \textbf{Metrics} & \textbf{Reported Result}\\
+\rowcolor{headgray}\textbf{Study} & \textbf{Focus} & \textbf{Models / Methods} & \textbf{Reported Result}\\
 \midrule
-\endfirsthead
-\multicolumn{6}{@{}l}{\small\textit{Table~\thetable\ (continued)}}\\
-\toprule
-\rowcolor{headgray}\textbf{\#} & \textbf{Study} & \textbf{Objective} & \textbf{Models / Methods} & \textbf{Metrics} & \textbf{Reported Result}\\
+\rowcolor{groupgray}\multicolumn{4}{@{}l}{\textbf{Surveys and reviews}}\\
+Bao, 2024~\cite{bao2024} & AI-generated text and image misinformation detection & NLP and CNN techniques; RoBERTa-based models & Up to 99.2\% accuracy (RoBERTa, tweets)\\
+Ghiur\u{a}u and Popescu, 2025~\cite{ghiurau2025} & Synthetic-content detection across modalities & Stylometry, watermarking, dual-stream networks, ML, blockchain, hybrid & About 80\% (stylometry); up to 92\% (hybrid)\\
+Adithya et al., 2025~\cite{adithya2025} & Sentiment-driven deepfake-text detection & Sentiment-based statistical and linguistic analysis, ML & Survey; notes scarce labelled data\\
 \midrule
-\endhead
+\rowcolor{groupgray}\multicolumn{4}{@{}l}{\textbf{Machine-generated social media content}}\\
+Sravanthi and Sai, 2025~\cite{sravanthi2025} & Machine-generated tweet identification & FastText with CNN / LSTM & Outperforms existing techniques (as reported)\\
+Rajkumar et al., 2024~\cite{rajkumar2024} & Machine-generated tweet detection & FastText; Naive Bayes, Logistic Regression, Decision Tree, Random Forest, CNN & CNN 87\% (best); Decision Tree 56\%\\
+ShivaKrishna and Bhargavi, 2025~\cite{shivakrishna2025} & Machine-generated tweet detection & FastText; classical classifiers, Gradient Boosting, CNN, hybrid CNN & Hybrid CNN 93.94\%; Naive Bayes 57.96\%\\
+Kumarage et al., 2023~\cite{kumarage2023} & Stylometric detection in Twitter timelines & XGBoost on several features; fine-tuned BERT, RoBERTa (+ stylometry) & RoBERTa + Stylo, about 91.1\% accuracy\\
+Fagni et al., 2021~\cite{fagni2021} & Deepfake tweets (TweepFake, 25{,}000 tweets) & 13 detection methods & Fine-tuned RoBERTa, F1 = 0.895\\
 \midrule
-\multicolumn{6}{@{}r}{\small\textit{Continued on the next page}}\\
-\endfoot
+\rowcolor{groupgray}\multicolumn{4}{@{}l}{\textbf{Commercial AI-content detectors}}\\
+Chaka, 2023~\cite{chaka2023} & Five detectors on ChatGPT output, incl.\ translations & GPTZero, OpenAI classifier, Writer.com, Copyleaks, GLTR & Copyleaks best; all five inadequate\\
+Elkhatat et al., 2023~\cite{elkhatat2023} & Detectors on GPT-3.5, GPT-4 and human text & GPTZero, OpenAI classifier & OpenAI classifier correct on all paragraphs\\
+\midrule
+\rowcolor{groupgray}\multicolumn{4}{@{}l}{\textbf{Classical machine learning approaches}}\\
+Prova, 2024~\cite{prova2024} & Machine-generated vs.\ human-written text & XGBoost, SVM, BERT & BERT 93\%; XGBoost 84\%; SVM 81\%\\
+Najjar et al., 2025~\cite{najjar2025} & CyberHumanAI dataset (1{,}000 texts) & XGBoost, Random Forest; GPTZero baseline & XGBoost 83\%; RF 81\%; GPTZero 48\%\\
+\midrule
+\rowcolor{groupgray}\multicolumn{4}{@{}l}{\textbf{Deep learning and transformer-based approaches}}\\
+Boutadjine et al., 2025~\cite{boutadjine2025} & ChatGPT-3.5 text vs.\ authentic; human comparison & Transfer learning: mBERT, XLM-RoBERTa variants & 94\%--99\% accuracy; humans weaker\\
+Katib et al., 2023~\cite{katib2023} & Human vs.\ ChatGPT text & TSA-LSTMRNN (TF-IDF, embeddings) & 93.17\% / 93.83\% accuracy\\
+Verma et al., 2024~\cite{verma2024} & Text ghostwritten by LLMs & Ghostbuster vs.\ DetectGPT, GPTZero, RoBERTa & F1 = 99\% (+5.9 points)\\
+Mo et al., 2024~\cite{mo2024} & Transformer-based detection & LSTM, Transformer and CNN layers & Test F1 = 99\%\\
+Xu et al., 2024~\cite{xu2024} & ChatGPT-generated code assignments & CodeBERT with LLM perplexity & AUC 0.56 $\rightarrow$ 0.87\\
+Lai et al., 2024~\cite{lai2024} & Generalisation of transformer detectors & Five transformers; adaptive ensemble & 99.2\% (available); 72.5\% (unavailable)\\
+Wang et al., 2024~\cite{wang2024} & BERT-based detection & BERT; 60/40 split & 97.7\% test accuracy\\
+Kayabas et al., 2025~\cite{kayabas2025} & Turkish human vs.\ AI text & LSTM & 97.28\% accuracy\\
+Alhijawi et al., 2025~\cite{alhijawi2025} & ChatGPT scientific text (AIGTxt, 3{,}000 records) & AI-Catcher (MLP + CNN) & +37.4\% average accuracy\\
 \bottomrule
-\endlastfoot
-\rowcolor{groupgray}\multicolumn{6}{@{}l}{\textbf{Survey and review studies}}\\
-1 & Bao, 2024~\cite{bao2024} & Review of methods for detecting AI-generated textual and image misinformation & NLP and CNN-based techniques; RoBERTa-based models & --- & Up to 99.2\% accuracy (RoBERTa-based models, AI-generated tweets)\\
-\midrule
-2 & Ghiur\u{a}u and Popescu, 2025~\cite{ghiurau2025} & Survey of detection approaches for synthetic content across modalities & Stylometry, watermarking, dual-stream networks, machine learning, blockchain, hybrid approaches & Detection accuracy & About 80\% (stylometric analysis); up to 92\% (hybrid, multimodal)\\
-\midrule
-3 & Adithya et al., 2025~\cite{adithya2025} & Survey of sentiment-driven detection of deepfake text and emotional manipulation & Sentiment-driven statistical analysis, sentiment-aware linguistic evaluation, machine learning & --- (survey) & Not applicable; highlights scarce labelled data and adversarial adaptation\\
-\midrule
-\rowcolor{groupgray}\multicolumn{6}{@{}l}{\textbf{Detection of machine-generated social media content}}\\
-4 & Sravanthi and Sai, 2025~\cite{sravanthi2025} & Identification of machine-generated tweets & FastText embeddings with CNN / LSTM & --- & Reported to surpass existing deepfake-text detection techniques\\
-\midrule
-5 & Rajkumar et al., 2024~\cite{rajkumar2024} & Detection of machine-generated tweets & FastText embeddings; Naive Bayes, Logistic Regression, Decision Tree, Random Forest, CNN & F1-score, precision, recall, accuracy & CNN best (87\% accuracy); Decision Tree lowest (56\%)\\
-\midrule
-6 & ShivaKrishna and Bhargavi, 2025~\cite{shivakrishna2025} & Detection of machine-generated tweets & FastText embeddings; Naive Bayes, Logistic Regression, Decision Tree, Random Forest, Gradient Boosting, CNN, extended hybrid CNN & F1-score, precision, recall, accuracy & Hybrid CNN best (93.94\%); Naive Bayes lowest (57.96\%)\\
-\midrule
-7 & Kumarage et al., 2023~\cite{kumarage2023} & Stylometric detection of AI-generated tweets in Twitter timelines & XGB (BOW, W2V, Stylo, BERT/RoBERTa embeddings); fine-tuned BERT, RoBERTa, RoBERTa + Stylo & Accuracy & RoBERTa FT + Stylo best (about 91.1\%)\\
-\midrule
-8 & Fagni et al., 2021~\cite{fagni2021} & Detection of deepfake tweets using the TweepFake dataset (about 25{,}000 tweets) & 13 detection methods & F1-score & Fine-tuned RoBERTa best (F1 = 0.895)\\
-\midrule
-\rowcolor{groupgray}\multicolumn{6}{@{}l}{\textbf{Evaluation of commercial AI-content detectors}}\\
-9 & Chaka, 2023~\cite{chaka2023} & Evaluation of five AI-content detectors on ChatGPT output, including translated text & GPTZero, OpenAI Text Classifier, Writer.com, Copyleaks, GLTR (Giant Language Model Test Room) & Detection outcome per tool & Copyleaks best, then OpenAI classifier; all five judged inadequate\\
-\midrule
-10 & Elkhatat et al., 2023~\cite{elkhatat2023} & Efficacy of detectors on GPT-3.5, GPT-4 and human-written paragraphs & GPTZero, OpenAI classifier & Detection correctness & OpenAI classifier correct on all paragraphs; GPTZero ambiguous on GPT-4 and human text\\
-\midrule
-\rowcolor{groupgray}\multicolumn{6}{@{}l}{\textbf{Classical machine learning and feature-based approaches}}\\
-11 & Prova, 2024~\cite{prova2024} & Distinguishing machine-generated from human-written text & XGBoost, SVM, BERT & Accuracy & XGBoost 84\%, SVM 81\%, BERT 93\%\\
-\midrule
-12 & Najjar et al., 2025~\cite{najjar2025} & Detection of AI-generated content on the CyberHumanAI dataset (1{,}000 texts) & XGBoost, Random Forest; GPTZero as baseline & Accuracy & XGBoost 83\%, Random Forest 81\%, GPTZero 48\%\\
-\midrule
-\rowcolor{groupgray}\multicolumn{6}{@{}l}{\textbf{Deep learning and transformer-based approaches}}\\
-13 & Boutadjine et al., 2025~\cite{boutadjine2025} & Discriminating authentic from ChatGPT-3.5-generated text; comparison with human detection & Transfer learning with mBERT, XLM-RoBERTa-base, XLM-RoBERTa-large, XLM-RoBERTa-large-XNLI & Accuracy, precision, recall, F1-score & 94\%--99\% accuracy; humans markedly weaker than the detectors\\
-\midrule
-14 & Katib et al., 2023~\cite{katib2023} & Separating human- and ChatGPT-generated text & TSA-LSTMRNN (TF-IDF, word embedding, feature-count optimisation) & Accuracy & 93.17\% (human) and 93.83\% (ChatGPT)\\
-\midrule
-15 & Verma et al., 2024~\cite{verma2024} & Detection of text ghostwritten by LLMs & Ghostbuster; compared with DetectGPT, GPTZero, RoBERTa baseline & F1-score & F1 = 99\%, 5.9 points above the compared models\\
-\midrule
-16 & Mo et al., 2024~\cite{mo2024} & Detection of AI-generated text with a transformer-based model & Combined LSTM, Transformer and CNN layers & Accuracy, F1-score & Training accuracy 94.96\%$\rightarrow$99.8\%; test F1 = 99\%\\
-\midrule
-17 & Xu et al., 2024~\cite{xu2024} & Detection of ChatGPT-generated code assignments for academic integrity & CodeBERT with LLM perplexity & AUC & Average AUC raised from 0.56 (GPTZero baseline) to 0.87\\
-\midrule
-18 & Lai et al., 2024~\cite{lai2024} & Generalisation of transformer-based detectors & Five fine-tuned transformers; adaptive ensemble & Accuracy & Ensemble: 91.8\%$\rightarrow$99.2\% (available data), 62.9\%$\rightarrow$72.5\% (unavailable data)\\
-\midrule
-19 & Wang et al., 2024~\cite{wang2024} & AI-generated text detection with BERT & BERT; 60/40 train/test split & Accuracy & 98.1\% (train), 97.7\% (test)\\
-\midrule
-20 & Kayabas et al., 2025~\cite{kayabas2025} & Classifying Turkish human-written vs.\ AI-generated text & LSTM (hyperparameter variations) & Accuracy & 97.28\% (19 of 628 texts misclassified)\\
-\midrule
-21 & Alhijawi et al., 2025~\cite{alhijawi2025} & Detection of ChatGPT-generated scientific text (AIGTxt dataset, 3{,}000 records) & AI-Catcher (MLP + CNN) & Accuracy & Average improvement of 37.4\% over alternatives\\
-\end{longtable}
+\end{tabular}
 \end{singlespace}}
-\end{landscape}
+\end{table}
